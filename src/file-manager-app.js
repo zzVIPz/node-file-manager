@@ -1,8 +1,10 @@
+import { argv, stdin, stdout, exit } from 'process';
 import { createInterface } from 'readline';
 import {
   greetUser,
   printWorkingDirectory,
   signOutUser,
+  goUpDirectory,
 } from './modules/index.js';
 import { print } from './utils/print.js';
 
@@ -15,7 +17,7 @@ export default class FileManager {
 
   greetings = () => {
     greetUser({
-      userEntry: process.argv[2] ?? '',
+      userEntry: argv[2] ?? '',
       printWorkingDirectory,
       setName: this.setName,
       createInterface: this.createInterface,
@@ -24,20 +26,25 @@ export default class FileManager {
 
   createInterface = () => {
     const rl = createInterface({
-      input: process.stdin,
-      output: process.stdout,
+      input: stdin,
+      output: stdout,
     });
+    rl.prompt();
 
     rl.on('line', (line) => {
       switch (line.trim()) {
+        case 'up':
+          goUpDirectory();
+          break;
+
         case '.exit':
           signOutUser(this.username);
-          process.exit(0);
-
+          exit(0);
         default:
           print(`Invalid input\n`, 'red');
           break;
       }
+      printWorkingDirectory();
       rl.prompt();
     }).on('close', () => {
       signOutUser(this.username);
