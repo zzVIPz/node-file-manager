@@ -5,6 +5,7 @@ import {
   printWorkingDirectory,
   signOutUser,
   goUpDirectory,
+  goToDirectory,
 } from './modules/index.js';
 import { print } from './utils/print.js';
 
@@ -32,12 +33,16 @@ export default class FileManager {
     rl.prompt();
 
     rl.on('line', (line) => {
-      switch (line.trim()) {
-        case 'up':
+      const trimmedLine = line.trim();
+
+      switch (true) {
+        case trimmedLine === 'up':
           goUpDirectory();
           break;
-
-        case '.exit':
+        case trimmedLine.startsWith('cd '):
+          goToDirectory(trimmedLine);
+          break;
+        case trimmedLine === '.exit':
           signOutUser(this.username);
           exit(0);
         default:
