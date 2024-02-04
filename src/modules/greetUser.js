@@ -1,15 +1,22 @@
-const greetUser = ({ userEntry, printWorkingDirectory }) => {
+import { print } from '../utils/print.js';
+
+const greetUser = ({
+  userEntry,
+  printWorkingDirectory,
+  setName,
+  createInterface,
+}) => {
   if (userEntry.startsWith('--username=') && userEntry.length > 11) {
-    console.log(
-      `Welcome to the File Manager, \x1b[32m${userEntry.replace(
-        '--username=',
-        ''
-      )}\x1b[0m!\n`
-    );
+    const username = userEntry.replace('--username=', '');
+
+    print(`Welcome to the File Manager, ${username}!\n`, 'green');
     printWorkingDirectory();
+    setName(username);
+    createInterface();
   } else {
-    console.log(
-      'Please, start app by running npm-script start in the following way:'
+    print(
+      'Please, start app by running npm-script start in the following way:',
+      'red'
     );
     console.log('npm run start -- --username=your_username');
   }
