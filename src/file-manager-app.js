@@ -1,13 +1,14 @@
-import { argv, stdin, stdout, exit } from 'process';
-import { createInterface } from 'readline';
+import { argv, stdin, stdout, exit } from 'node:process';
+import { createInterface } from 'node:readline';
 import {
   greetUser,
   printWorkingDirectory,
   signOutUser,
   goUpDirectory,
   goToDirectory,
+  printDirectoryList,
 } from './modules/index.js';
-import { print } from './utils/print.js';
+import { printError } from './utils/print.js';
 
 export default class FileManager {
   username = '';
@@ -32,7 +33,7 @@ export default class FileManager {
     });
     rl.prompt();
 
-    rl.on('line', (line) => {
+    rl.on('line', async (line) => {
       const trimmedLine = line.trim();
 
       switch (true) {
@@ -42,11 +43,14 @@ export default class FileManager {
         case trimmedLine.startsWith('cd '):
           goToDirectory(trimmedLine);
           break;
+        case trimmedLine === 'ls':
+          await printDirectoryList();
+          break;
         case trimmedLine === '.exit':
           signOutUser(this.username);
           exit(0);
         default:
-          print(`Invalid input\n`, 'red');
+          printError(`Invalid input\n`);
           break;
       }
       printWorkingDirectory();

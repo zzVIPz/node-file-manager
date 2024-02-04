@@ -13,3 +13,5 @@ export const print = (text, foregroundColor) => {
 
   console.log(`${colorCode}${text}\x1b[0m`);
 };
+
+export const printError = (text = `Operation failed.\n`) => print(text, 'red');
