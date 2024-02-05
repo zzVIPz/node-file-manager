@@ -7,6 +7,7 @@ import printDirectoryList from './printDirectoryList.js';
 import readFile from './readFile.js';
 import addFile from './addFile.js';
 import renameFile from './renameFile.js';
+import copyFile from './copyFile.js';
 
 export {
   greetUser,
@@ -18,4 +19,5 @@ export {
   readFile,
   addFile,
   renameFile,
+  copyFile,
 };

@@ -10,6 +10,7 @@ import {
   readFile,
   addFile,
   renameFile,
+  copyFile,
 } from './modules/index.js';
 import { printError } from './utils/print.js';
 
@@ -57,6 +58,9 @@ export default class FileManager {
           break;
         case trimmedLine.startsWith('rn '):
           await renameFile(trimmedLine);
+          break;
+        case trimmedLine.startsWith('cp '):
+          await copyFile(trimmedLine);
           break;
         case trimmedLine === '.exit':
           signOutUser(this.username);

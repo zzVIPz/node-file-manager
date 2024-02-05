@@ -3,9 +3,9 @@ import { join, isAbsolute, normalize } from 'node:path';
 import { printError } from '../utils/print.js';
 
 const goToDirectory = (trimmedLine) => {
-  const formattedPath = normalize(trimmedLine.slice(3));
-
   try {
+    const formattedPath = normalize(trimmedLine.slice(3));
+
     if (isAbsolute(formattedPath)) {
       chdir(join(formattedPath));
     } else {
