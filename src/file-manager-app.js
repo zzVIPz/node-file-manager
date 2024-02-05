@@ -15,6 +15,7 @@ import {
   calculateHash,
   compressFile,
   decompressFile,
+  printOsInfo,
 } from './modules/index.js';
 import { printError } from './utils/print.js';
 
@@ -80,6 +81,9 @@ export default class FileManager {
           break;
         case trimmedLine.startsWith('decompress '):
           await decompressFile(trimmedLine);
+          break;
+        case trimmedLine.startsWith('os '):
+          await printOsInfo(trimmedLine);
           break;
         case trimmedLine === '.exit':
           signOutUser(this.username);

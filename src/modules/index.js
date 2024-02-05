@@ -12,6 +12,7 @@ import deleteFile from './deleteFile.js';
 import calculateHash from './calculateHash.js';
 import compressFile from './compressFile.js';
 import decompressFile from './decompressFile.js';
+import printOsInfo from './printOsInfo.js';
 
 export {
   greetUser,
@@ -28,4 +29,5 @@ export {
   calculateHash,
   compressFile,
   decompressFile,
+  printOsInfo,
 };
