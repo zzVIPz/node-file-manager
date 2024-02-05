@@ -11,6 +11,7 @@ import copyFile from './copyFile.js';
 import deleteFile from './deleteFile.js';
 import calculateHash from './calculateHash.js';
 import compressFile from './compressFile.js';
+import decompressFile from './decompressFile.js';
 
 export {
   greetUser,
@@ -26,4 +27,5 @@ export {
   deleteFile,
   calculateHash,
   compressFile,
+  decompressFile,
 };

@@ -14,6 +14,7 @@ import {
   deleteFile,
   calculateHash,
   compressFile,
+  decompressFile,
 } from './modules/index.js';
 import { printError } from './utils/print.js';
 
@@ -76,6 +77,9 @@ export default class FileManager {
           break;
         case trimmedLine.startsWith('compress '):
           await compressFile(trimmedLine);
+          break;
+        case trimmedLine.startsWith('decompress '):
+          await decompressFile(trimmedLine);
           break;
         case trimmedLine === '.exit':
           signOutUser(this.username);
