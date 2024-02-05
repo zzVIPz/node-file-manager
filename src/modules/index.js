@@ -9,6 +9,7 @@ import addFile from './addFile.js';
 import renameFile from './renameFile.js';
 import copyFile from './copyFile.js';
 import deleteFile from './deleteFile.js';
+import calculateHash from './calculateHash.js';
 
 export {
   greetUser,
@@ -22,4 +23,5 @@ export {
   renameFile,
   copyFile,
   deleteFile,
+  calculateHash,
 };
