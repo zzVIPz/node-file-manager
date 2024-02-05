@@ -11,6 +11,7 @@ import {
   addFile,
   renameFile,
   copyFile,
+  deleteFile,
 } from './modules/index.js';
 import { printError } from './utils/print.js';
 
@@ -61,6 +62,9 @@ export default class FileManager {
           break;
         case trimmedLine.startsWith('cp '):
           await copyFile(trimmedLine);
+          break;
+        case trimmedLine.startsWith('rm '):
+          await deleteFile(trimmedLine);
           break;
         case trimmedLine === '.exit':
           signOutUser(this.username);

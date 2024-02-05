@@ -8,6 +8,7 @@ import readFile from './readFile.js';
 import addFile from './addFile.js';
 import renameFile from './renameFile.js';
 import copyFile from './copyFile.js';
+import deleteFile from './deleteFile.js';
 
 export {
   greetUser,
@@ -20,4 +21,5 @@ export {
   addFile,
   renameFile,
   copyFile,
+  deleteFile,
 };
