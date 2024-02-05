@@ -9,6 +9,7 @@ import {
   printDirectoryList,
   readFile,
   addFile,
+  renameFile,
 } from './modules/index.js';
 import { printError } from './utils/print.js';
 
@@ -53,6 +54,9 @@ export default class FileManager {
           break;
         case trimmedLine.startsWith('add '):
           await addFile(trimmedLine);
+          break;
+        case trimmedLine.startsWith('rn '):
+          await renameFile(trimmedLine);
           break;
         case trimmedLine === '.exit':
           signOutUser(this.username);
