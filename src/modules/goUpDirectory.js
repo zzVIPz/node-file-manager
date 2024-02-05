@@ -1,5 +1,5 @@
-import { chdir, cwd } from 'process';
-import { join } from 'path';
+import { chdir, cwd } from 'node:process';
+import { join } from 'node:path';
 
 const goUpDirectory = () => {
   chdir(join(cwd(), '..'));

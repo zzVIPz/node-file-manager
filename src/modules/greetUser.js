@@ -1,4 +1,4 @@
-import { print } from '../utils/print.js';
+import { print, printError } from '../utils/print.js';
 
 const greetUser = ({
   userEntry,
@@ -14,11 +14,10 @@ const greetUser = ({
     setName(username);
     createInterface();
   } else {
-    print(
-      'Please, start app by running npm-script start in the following way:',
-      'red'
+    printError(
+      'Please, start app by running npm-script start in the following way:'
     );
-    console.log('npm run start -- --username=your_username');
+    print('npm run start -- --username=your_username');
   }
 };
 

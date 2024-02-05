@@ -4,6 +4,7 @@ import signOutUser from './signOutUser.js';
 import goUpDirectory from './goUpDirectory.js';
 import goToDirectory from './goToDirectory.js';
 import printDirectoryList from './printDirectoryList.js';
+import readFile from './readFile.js';
 
 export {
   greetUser,
@@ -12,4 +13,5 @@ export {
   goUpDirectory,
   goToDirectory,
   printDirectoryList,
+  readFile,
 };

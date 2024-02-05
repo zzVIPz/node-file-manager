@@ -1,5 +1,5 @@
 export const print = (text, foregroundColor) => {
-  let colorCode = '';
+  let colorCode = '\x1b[37m';
   switch (foregroundColor) {
     case 'red':
       colorCode = `\x1b[31m`;

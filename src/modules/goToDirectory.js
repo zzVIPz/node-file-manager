@@ -1,9 +1,9 @@
-import { chdir, cwd } from 'process';
-import { join, isAbsolute, normalize } from 'path';
-import { print } from '../utils/print.js';
+import { chdir, cwd } from 'node:process';
+import { join, isAbsolute, normalize } from 'node:path';
+import { printError } from '../utils/print.js';
 
-const goToDirectory = (path) => {
-  const formattedPath = normalize(path.slice(3));
+const goToDirectory = (trimmedLine) => {
+  const formattedPath = normalize(trimmedLine.slice(3));
 
   try {
     if (isAbsolute(formattedPath)) {
@@ -12,7 +12,8 @@ const goToDirectory = (path) => {
       chdir(join(cwd(), formattedPath));
     }
   } catch {
-    print('The system cannot find the path specified.\n', 'red');
+    printError('The system cannot find the path specified.');
+    printError();
   }
 };
 
