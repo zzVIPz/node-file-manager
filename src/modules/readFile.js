@@ -5,7 +5,8 @@ import { printError, print } from '../utils/print.js';
 
 const readFile = async (trimmedLine) => {
   try {
-    const path = join(cwd(), trimmedLine.slice(4));
+    const fileName = trimmedLine.slice(4);
+    const path = join(cwd(), fileName);
     let output = '';
 
     await new Promise((res, rej) => {
@@ -22,7 +23,7 @@ const readFile = async (trimmedLine) => {
       });
 
       readStream.on('error', () => {
-        printError(`Error reading file: no such file or directory`);
+        printError(`Error reading file: no such file '${fileName}'`);
         rej();
       });
     });
