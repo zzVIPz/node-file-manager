@@ -10,6 +10,7 @@ import renameFile from './renameFile.js';
 import copyFile from './copyFile.js';
 import deleteFile from './deleteFile.js';
 import calculateHash from './calculateHash.js';
+import compressFile from './compressFile.js';
 
 export {
   greetUser,
@@ -24,4 +25,5 @@ export {
   copyFile,
   deleteFile,
   calculateHash,
+  compressFile,
 };
