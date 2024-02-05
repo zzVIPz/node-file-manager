@@ -2,8 +2,9 @@ import { createReadStream, createWriteStream } from 'node:fs';
 import { cwd } from 'node:process';
 import { join, isAbsolute, normalize } from 'node:path';
 import { printError, print } from '../utils/print.js';
+import deleteFile from './deleteFile.js';
 
-const copyFile = async (trimmedLine) => {
+const copyFile = async (trimmedLine, { isMove } = {}) => {
   try {
     const [fileName, pathToNewDirectory] = trimmedLine.slice(3).split(' ');
     const filePath = join(cwd(), fileName);
@@ -18,8 +19,15 @@ const copyFile = async (trimmedLine) => {
 
       readStream.pipe(writeStream);
 
-      readStream.on('end', () => {
-        print(`File ${fileName} copied successfully!\n`, 'green');
+      readStream.on('end', async () => {
+        if (isMove) {
+          await deleteFile(fileName, { isTrimmed: true });
+        }
+
+        print(
+          `File ${fileName} ${isMove ? 'moved' : 'copied'} successfully!\n`,
+          'green'
+        );
         res();
       });
 

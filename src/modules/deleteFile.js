@@ -3,9 +3,9 @@ import { cwd } from 'node:process';
 import { join } from 'node:path';
 import { printError, print } from '../utils/print.js';
 
-const deleteFile = async (trimmedLine) => {
+const deleteFile = async (trimmedLine, { isTrimmed } = {}) => {
   try {
-    const fileName = trimmedLine.slice(3);
+    const fileName = isTrimmed ? trimmedLine : trimmedLine.slice(3);
     const filePath = join(cwd(), fileName);
 
     await new Promise((res, rej) => {
@@ -16,7 +16,9 @@ const deleteFile = async (trimmedLine) => {
           return;
         }
 
-        print(`File '${fileName}' deleted successfully!\n`, 'green');
+        if (!isTrimmed)
+          print(`File '${fileName}' deleted successfully!\n`, 'green');
+
         res();
       });
     });

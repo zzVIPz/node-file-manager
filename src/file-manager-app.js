@@ -63,6 +63,9 @@ export default class FileManager {
         case trimmedLine.startsWith('cp '):
           await copyFile(trimmedLine);
           break;
+        case trimmedLine.startsWith('mv '):
+          await copyFile(trimmedLine, { isMove: true });
+          break;
         case trimmedLine.startsWith('rm '):
           await deleteFile(trimmedLine);
           break;
